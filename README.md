@@ -1,6 +1,6 @@
 # receipt_processor
 
-### 2 ways to start the server -
+### 2 ways to start the application -
 
 #### 1. Build the image using the dockerfile and start the server :-
 
