@@ -12,11 +12,16 @@ git clone https://github.com/sahilh14/receipt_processor.git
 
 Navigate to the project folder.
 
+```
+cd receipt_processor
+```
+
 Run the following commands -
 
 ```
 docker build -t receipt_processor_ubuntu .
-
+```
+```
 docker run -p 8000:8000 receipt_processor_ubuntu
 ```
 
