@@ -48,3 +48,42 @@ Description - Takes a json as input and returns a uuid.
 
 Description - Takes the id of type string as parameter and returns the points for the receipt with this id
 
+### Once you have the server running, you can access the endpoints directly also through curl - 
+
+**/receipts/process/ as Curl -**
+
+curl 'http://localhost:8000/receipts/process/' \
+  -H 'Accept: */*' \
+  -H 'Accept-Language: en-US,en;q=0.9' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/json' \
+  -H 'Cookie: csrftoken=YnfqKZwHSWCXQB2Pa1ZxrsgdRwA08UpB' \
+  -H 'Origin: http://localhost:8000' \
+  -H 'Referer: http://localhost:8000/receipt_input_page/' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36' \
+  -H 'X-CSRFToken: YnfqKZwHSWCXQB2Pa1ZxrsgdRwA08UpB' \
+  -H 'sec-ch-ua: "Not A(Brand";v="99", "Google Chrome";v="121", "Chromium";v="121"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  --data-raw $'{\n  "retailer": "M&M Corner Market",\n  "purchaseDate": "2022-03-20",\n  "purchaseTime": "14:33",\n  "items": [\n    {\n      "shortDescription": "Gatorade",\n      "price": "2.25"\n    },{\n      "shortDescription": "Gatorade",\n      "price": "2.25"\n    },{\n      "shortDescription": "Gatorade",\n      "price": "2.25"\n    },{\n      "shortDescription": "Gatorade",\n      "price": "2.25"\n    }\n  ],\n  "total": "9.00"\n}' \
+  --compressed
+
+**/receipts/{id}/points/ as curl -** 
+
+curl 'http://localhost:8000/receipts/5b91c9c0-4cc6-4b6b-8e26-192eebec5c1b/points/' \
+  -H 'Accept: */*' \
+  -H 'Accept-Language: en-US,en;q=0.9' \
+  -H 'Connection: keep-alive' \
+  -H 'Cookie: csrftoken=YnfqKZwHSWCXQB2Pa1ZxrsgdRwA08UpB' \
+  -H 'Referer: http://localhost:8000/id_input_page/' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36' \
+  -H 'sec-ch-ua: "Not A(Brand";v="99", "Google Chrome";v="121", "Chromium";v="121"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  --compressed
