@@ -73,7 +73,9 @@ curl 'http://localhost:8000/receipts/process/' \
 
 **/receipts/{id}/points/ as curl -** 
 
-curl 'http://localhost:8000/receipts/5b91c9c0-4cc6-4b6b-8e26-192eebec5c1b/points/' \
+**replace the {id} with the actual id**
+
+curl 'http://localhost:8000/receipts/{id}/points/' \
   -H 'Accept: */*' \
   -H 'Accept-Language: en-US,en;q=0.9' \
   -H 'Connection: keep-alive' \
@@ -87,3 +89,4 @@ curl 'http://localhost:8000/receipts/5b91c9c0-4cc6-4b6b-8e26-192eebec5c1b/points
   -H 'sec-ch-ua-mobile: ?0' \
   -H 'sec-ch-ua-platform: "macOS"' \
   --compressed
+
