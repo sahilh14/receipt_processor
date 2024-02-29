@@ -3,6 +3,7 @@ import uuid
 import json
 
 from rest_framework import status
+from django.http import JsonResponse
 from rest_framework.response import Response
 from jsonschema.exceptions import SchemaError
 from rest_framework.decorators import api_view
@@ -41,7 +42,7 @@ def process_receipt(request):
 def get_points(request, id):
 
     if not re.match(r"^\S+$", id):
-        return Response(
+        return JsonResponse(
             {
                 "message": "Invalid ID format. ID must consist of non-whitespace characters only."
             },
@@ -50,9 +51,9 @@ def get_points(request, id):
 
     data = {"points": id_points.get(str(id))}
     if data["points"] is None:
-        return Response(
+        return JsonResponse(
             {"message": "No receipt found for ID ({})".format(id)},
             status=status.HTTP_404_NOT_FOUND,
         )
     else:
-        return Response(data, status=status.HTTP_200_OK)
+        return JsonResponse(data, status=status.HTTP_200_OK)
