@@ -21,11 +21,11 @@ http://localhost:8000 or http://127.0.0.1:8000
 
 Run the command to pull the image -
 
-docker pull sahilh14/work:receipt_processor_v1
+docker pull sahilh14/receipt_processor:latest
 
 Run the command to start the web server -
 
-docker run -p 8000:8000 sahilh14/work
+docker run -p 8000:8000 sahilh14/receipt_processor:latest
 
 Please open one of the following urls in the browser to access the web service -
 
