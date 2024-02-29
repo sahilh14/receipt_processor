@@ -32,3 +32,19 @@ Please open one of the following urls in the browser to access the web service -
 http://localhost:8000 or http://127.0.0.1:8000
 
 - PS - The server will NOT be accessible on 0.0.0.0:8000 -
+
+
+### About the Project - 
+
+This is a simple web service to accept a receipt as input and generate points based on the receipt data.
+The apis are exposed through 2 simple UI forms. 
+
+#### Apis :
+**POST /receipts/process/**
+
+Description - Takes a json as input and returns a uuid.
+
+**GET /receipts/{id}/points/**
+
+Description - Takes the id of type string as parameter and returns the points for the receipt with this id
+
