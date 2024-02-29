@@ -52,6 +52,7 @@ Description - Takes the id of type string as parameter and returns the points fo
 
 **/receipts/process/ as Curl -**
 
+```
 curl 'http://localhost:8000/receipts/process/' \
   -H 'Accept: */*' \
   -H 'Accept-Language: en-US,en;q=0.9' \
@@ -70,11 +71,13 @@ curl 'http://localhost:8000/receipts/process/' \
   -H 'sec-ch-ua-platform: "macOS"' \
   --data-raw $'{\n  "retailer": "M&M Corner Market",\n  "purchaseDate": "2022-03-20",\n  "purchaseTime": "14:33",\n  "items": [\n    {\n      "shortDescription": "Gatorade",\n      "price": "2.25"\n    },{\n      "shortDescription": "Gatorade",\n      "price": "2.25"\n    },{\n      "shortDescription": "Gatorade",\n      "price": "2.25"\n    },{\n      "shortDescription": "Gatorade",\n      "price": "2.25"\n    }\n  ],\n  "total": "9.00"\n}' \
   --compressed
+```
 
 **/receipts/{id}/points/ as curl -** 
 
 **replace the {id} with the actual id**
 
+```
 curl 'http://localhost:8000/receipts/{id}/points/' \
   -H 'Accept: */*' \
   -H 'Accept-Language: en-US,en;q=0.9' \
@@ -89,4 +92,5 @@ curl 'http://localhost:8000/receipts/{id}/points/' \
   -H 'sec-ch-ua-mobile: ?0' \
   -H 'sec-ch-ua-platform: "macOS"' \
   --compressed
+  ```
 
