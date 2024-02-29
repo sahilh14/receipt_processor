@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt Form Page</title>
+</head>
+<body>
+    <button onclick="location.href='/'">Back to Home</button>
+    <h1>Enter Receipt Data (json)</h1>
+    <textarea id="receiptData" rows="10" cols="50"></textarea>
+    <br><br>
+    <button onclick="submit()">Submit</button>
+    <br><br>
+    <div id="responseDataDiv"></div>
+
+    <script>
+        function submit() {
+            document.getElementById("responseDataDiv").innerText = "";
+            var receiptData = document.getElementById("receiptData").value;
+            if (isValidJson(receiptData)) {
+                submitData(receiptData);
+            } else {
+                alert("Invalid JSON format!");
+            }
+        }
+
+        function isValidJson(receiptData) {
+            try {
+                JSON.parse(receiptData);
+                return true;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        function submitData(receiptData) {
+            fetch('/receipts/process/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: receiptData
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById("receiptData").value = "";
+                    return response.json();
+                } else if (response.status === 400) {
+                   return response.json(); 
+                } else {
+                    throw new Error('Failed to submit Receipt data');
+                }
+            })
+            .then(data => {
+                displayData(data);
+            })
+            .catch(error => {
+                alert("Invalid JSON");
+            });
+        }
+
+        function displayData(data) {
+            var responseDataDiv = document.getElementById("responseDataDiv");
+            if ('id' in data)
+                responseDataDiv.innerHTML = "id : " + data.id;
+            else if ('message' in data) {
+                responseDataDiv.innerHTML = data.message
+            }
+        }
+
+
+        function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    </script>
+</body>
+</html>

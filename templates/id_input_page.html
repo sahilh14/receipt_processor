@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Form Page</title>
+</head>
+<body>
+    <button onclick="location.href='/'">Back to Home</button>
+    <h1>Enter ID</h1>
+    <textarea id="idInput" rows="1" cols="40"></textarea>
+    <br><br>
+    <button onclick="submit()">Get Points</button>
+    <br><br>
+    <div id="responseDataDiv"></div>
+
+    <script>
+        function submit() {
+            document.getElementById("responseDataDiv").innerText = "";            
+            var idInput = document.getElementById("idInput").value;
+            if (isPatternValid(idInput)) {
+                fetchData(idInput);
+            } else {
+                alert("Invalid ID format. ID must consist of non-whitespace characters only.");
+            }
+
+        }
+
+        function isPatternValid(idInput) {
+            var pattern = /^\S+$/;
+            return pattern.test(idInput)
+        }
+
+
+        function fetchData(id) {
+            fetch('/receipts/' + id + '/points/')
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else if (response.status === 404) {
+                   return response.json();
+                } else {
+                    throw new Error('Failed to fetch points for this id');
+                }
+            })
+            .then(data => {
+                displayData(data);
+            })
+            .catch(error => {
+                alert("Failed to fetch points");
+            });
+        }
+
+        function displayData(data) {
+            var responseDataDiv = document.getElementById("responseDataDiv");
+            if ('points' in data)
+                responseDataDiv.innerHTML = "points : " + data.points;
+            else if ('message' in data) {
+                responseDataDiv.innerHTML = data.message
+            }
+        }
+    </script>
+</body>
+</html>
