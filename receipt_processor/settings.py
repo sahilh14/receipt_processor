@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-(!g9_wy(hd)kvrr2r92zwjte6-tyu=e^zm!6%q=v#j(bv_!qz("
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
 
@@ -54,10 +54,10 @@ ROOT_URLCONF = "receipt_processor.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            "/Users/sahil/Work/receipt_processor_challenge/receipt_processor/templates"
-        ],
-        # "DIRS": ["/templates"],
+        # "DIRS": [
+        #     "/Users/sahil/Work/receipt_processor_challenge/receipt_processor/templates"
+        # ],
+        "DIRS": ["/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
