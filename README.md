@@ -27,7 +27,7 @@ docker run -p 8000:8000 receipt_processor_ubuntu
 
 **Please open one of the following urls in the browser to access the web service -**
 
-## http://localhost:8000 or http://127.0.0.1:8000
+### http://localhost:8000 or http://127.0.0.1:8000
 
 
 **PS - The server WILL NOT be accessible on 0.0.0.0:8000**
@@ -49,7 +49,7 @@ docker run -p 8000:8000 sahilh14/receipt_processor:latest
 
 **Please open one of the following urls in the browser to access the web service -**
 
-## http://localhost:8000 or http://127.0.0.1:8000
+### http://localhost:8000 or http://127.0.0.1:8000
 
 
 **PS - The server will NOT be accessible on 0.0.0.0:8000**
